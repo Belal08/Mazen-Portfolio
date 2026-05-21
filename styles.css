@@ -1086,7 +1086,7 @@ body.light-mode .service-grid article {
 .contact-card h2 {
   max-width: 780px;
   margin-inline: auto;
-  color: #111827;
+  color: var(--ink); /* تم ربطه بالمتغير الديناميكي ليصبح أبيض تلقائياً في الدارك مود */
   font-size: clamp(38px, 5vw, 64px);
 }
 
