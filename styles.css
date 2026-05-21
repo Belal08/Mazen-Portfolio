@@ -1177,3 +1177,8 @@ body.light-mode .service-grid article {
     font-size: 17px;
   }
 }
+
+.contact-icon.whatsapp svg {
+  fill: currentColor;
+  stroke: none;
+}
