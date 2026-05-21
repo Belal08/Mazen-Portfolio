@@ -1,6 +1,22 @@
 const themeToggle = document.querySelector(".theme-toggle");
-const savedTheme = localStorage.getItem("theme");
-const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+const storage = {
+  get(key) {
+    try {
+      return window.localStorage.getItem(key);
+    } catch {
+      return null;
+    }
+  },
+  set(key, value) {
+    try {
+      window.localStorage.setItem(key, value);
+    } catch {
+      return;
+    }
+  },
+};
+const savedTheme = storage.get("theme");
+const prefersLight = window.matchMedia?.("(prefers-color-scheme: light)")?.matches ?? false;
 
 const setTheme = (theme) => {
   const isLight = theme === "light";
@@ -16,7 +32,7 @@ setTheme(savedTheme || (prefersLight ? "light" : "dark"));
 
 themeToggle?.addEventListener("click", () => {
   const nextTheme = document.body.classList.contains("light-mode") ? "dark" : "light";
-  localStorage.setItem("theme", nextTheme);
+  storage.set("theme", nextTheme);
   setTheme(nextTheme);
 });
 
