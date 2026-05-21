@@ -772,7 +772,7 @@ h1 {
   width: 17px;
   height: 17px;
   fill: none;
-  stroke: currentColor;
+  stroke: #7f1838;
   stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -1174,7 +1174,7 @@ body.light-mode .service-grid article {
 }
 
 .contact-icon.whatsapp svg {
-  fill: currentColor;
+  fill: #7f1838;
   stroke: none;
 }
 
