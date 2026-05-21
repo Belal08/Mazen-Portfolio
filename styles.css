@@ -1232,3 +1232,22 @@ body.light-mode .service-grid article {
 .with-icon .contact-icon svg {
   fill: currentColor !important;
 }
+.navbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+}
+
+.logo {
+  grid-column: 1;
+  justify-self: start;
+}
+
+nav {
+  grid-column: 2;
+  justify-self: center;
+}
+
+.theme-toggle {
+  grid-column: 3;
+  justify-self: end;
+}
