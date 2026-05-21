@@ -768,16 +768,6 @@ h1 {
   vertical-align: middle;
 }
 
-.contact-icon svg {
-  width: 17px;
-  height: 17px;
-  fill: none;
-  stroke: #7f1838;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
 .contact-icon.behance svg {
   fill: currentColor;
   stroke: none;
@@ -1171,11 +1161,6 @@ body.light-mode .service-grid article {
 .contact-pill .contact-icon svg {
   width: 20px;
   height: 20px;
-}
-
-.contact-icon.whatsapp svg {
-  fill: #7f1838;
-  stroke: none;
 }
 
 .gmail-pill {
