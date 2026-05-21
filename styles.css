@@ -1251,3 +1251,74 @@ nav {
   grid-column: 3;
   justify-self: end;
 }
+
+/* Final navbar fix for desktop and mobile */
+.navbar {
+  display: grid !important;
+  grid-template-columns: minmax(46px, 1fr) auto minmax(46px, 1fr) !important;
+  align-items: center !important;
+  justify-content: stretch !important;
+  min-height: 76px !important;
+  padding-top: 0 !important;
+}
+
+.navbar::before {
+  content: "";
+  grid-column: 1;
+}
+
+.navbar nav {
+  grid-column: 2 !important;
+  justify-self: center !important;
+  max-width: none !important;
+  width: auto !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+}
+
+.navbar .theme-toggle {
+  grid-column: 3 !important;
+  justify-self: end !important;
+}
+
+@media (max-width: 620px) {
+  .navbar {
+    grid-template-columns: 1fr auto !important;
+    grid-template-areas:
+      "spacer toggle"
+      "menu menu" !important;
+    gap: 8px 12px !important;
+    min-height: 104px !important;
+    padding: 10px 14px !important;
+  }
+
+  .navbar::before {
+    grid-area: spacer;
+  }
+
+  .navbar .theme-toggle {
+    grid-area: toggle !important;
+    width: 38px !important;
+    height: 38px !important;
+  }
+
+  .navbar nav {
+    grid-area: menu !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 9px 14px !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  .navbar nav a {
+    font-size: 11px !important;
+  }
+}
