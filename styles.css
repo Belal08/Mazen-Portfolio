@@ -1,14 +1,16 @@
 :root {
-  --blue: #0078ff;
-  --blue-dark: #005fcc;
+  --blue: #b99052;
+  --blue-dark: #7f1838;
   --ink: #1e1e1e;
   --soft-ink: #4e5b66;
-  --bg: #f5f5f5;
+  --bg: #f3f0eb;
   --panel: #ffffff;
-  --line: #dfe7ef;
-  --night: #07101b;
+  --line: #e5ded3;
+  --night: #091119;
+  --wine: #431426;
+  --gold-soft: #eadcc4;
   --radius: 6px;
-  --shadow: 0 16px 42px rgba(16, 35, 55, 0.12);
+  --shadow: 0 16px 42px rgba(22, 17, 14, 0.13);
 }
 
 * {
@@ -49,7 +51,7 @@ a {
   justify-content: space-between;
   min-height: 76px;
   padding: 0 max(20px, calc((100vw - 1120px) / 2));
-  background: rgba(4, 10, 18, 0.86);
+  background: rgba(7, 13, 19, 0.9);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(16px);
 }
@@ -116,8 +118,9 @@ nav a:hover::after {
 
 .hero-overlay {
   background:
-    linear-gradient(rgba(3, 11, 22, 0.64), rgba(3, 11, 22, 0.74)),
-    radial-gradient(circle at 50% 20%, rgba(0, 120, 255, 0.35), transparent 42%);
+    linear-gradient(rgba(6, 12, 19, 0.68), rgba(6, 12, 19, 0.78)),
+    radial-gradient(circle at 50% 20%, rgba(185, 144, 82, 0.24), transparent 42%),
+    radial-gradient(circle at 78% 70%, rgba(127, 24, 56, 0.2), transparent 38%);
 }
 
 .hero-content {
@@ -206,7 +209,7 @@ h1 {
 .btn.primary {
   border-color: var(--blue);
   background: var(--blue);
-  color: #fff;
+  color: #111;
 }
 
 .btn.secondary {
@@ -216,6 +219,7 @@ h1 {
 .btn.secondary:hover {
   border-color: var(--blue);
   background: var(--blue);
+  color: #111;
 }
 
 .scroll-cue {
@@ -311,7 +315,7 @@ h1 {
   aspect-ratio: 1;
   border-radius: 5px;
   background:
-    linear-gradient(135deg, rgba(0, 120, 255, 0.96), rgba(4, 10, 18, 0.9)),
+    linear-gradient(135deg, rgba(127, 24, 56, 0.94), rgba(7, 13, 19, 0.92)),
     url("assets/work-hilal.jpg") center/cover;
   color: #fff;
   font-size: 38px;
@@ -320,6 +324,9 @@ h1 {
 }
 
 .profile-list p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin: 0 0 9px;
   color: var(--soft-ink);
   font-size: 15px;
@@ -362,7 +369,7 @@ h1 {
 
 .skill::before {
   width: 100%;
-  background: #cde1f8;
+  background: var(--gold-soft);
 }
 
 .skill i {
@@ -431,7 +438,7 @@ h1 {
   width: 70px;
   height: 70px;
   margin: 0 auto 20px;
-  border: 8px solid #cde1f8;
+  border: 8px solid var(--gold-soft);
   border-radius: 50%;
   color: var(--blue);
   font-size: 18px;
@@ -473,14 +480,14 @@ h1 {
 }
 
 .numbers-overlay {
-  background: rgba(0, 104, 221, 0.78);
+  background: linear-gradient(135deg, rgba(9, 17, 25, 0.88), rgba(67, 20, 38, 0.78) 48%, rgba(185, 144, 82, 0.66));
 }
 
 .number-grid {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
   text-align: center;
 }
@@ -496,19 +503,44 @@ h1 {
   text-transform: uppercase;
 }
 
-.work-grid {
+.portfolio-shell {
+  position: relative;
+  padding: 0 56px 34px;
+}
+
+.work-carousel {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 52px) / 3);
   gap: 26px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 6px 2px 22px;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.work-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.work-carousel.dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
 }
 
 .work-item {
   position: relative;
+  display: block;
   min-height: 360px;
   overflow: hidden;
   border-radius: var(--radius);
   background: var(--night);
   box-shadow: 0 10px 30px rgba(16, 35, 55, 0.12);
+  scroll-snap-align: start;
+  user-select: none;
 }
 
 .work-item img {
@@ -543,10 +575,72 @@ h1 {
 .work-info span {
   display: inline-block;
   margin-bottom: 8px;
-  color: #b7d9ff;
+  color: #eadcc4;
   font-size: 12px;
   font-weight: 900;
   text-transform: uppercase;
+}
+
+.work-info p {
+  margin: 0;
+  color: #e9dfcf;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.portfolio-nav {
+  position: absolute;
+  z-index: 5;
+  top: 40%;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(185, 144, 82, 0.55);
+  border-radius: 50%;
+  background: rgba(9, 17, 25, 0.94);
+  color: var(--gold-soft);
+  font-size: 34px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease;
+}
+
+.portfolio-nav:hover {
+  transform: translateY(-2px);
+  background: var(--wine);
+}
+
+.portfolio-nav.prev {
+  left: 0;
+}
+
+.portfolio-nav.next {
+  right: 0;
+}
+
+.portfolio-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  display: flex;
+  gap: 8px;
+  transform: translateX(-50%);
+}
+
+.portfolio-dots button {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: #d7c8b0;
+  cursor: pointer;
+}
+
+.portfolio-dots button.active {
+  width: 28px;
+  background: var(--blue);
 }
 
 .resume {
@@ -662,6 +756,9 @@ h1 {
 }
 
 .contact-list a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   padding: 14px 0;
   border-bottom: 1px solid var(--line);
   font-weight: 800;
@@ -669,6 +766,50 @@ h1 {
 
 .contact-list a:hover {
   color: var(--blue);
+}
+
+.contact-icon {
+  flex: 0 0 auto;
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  color: #fff;
+  vertical-align: middle;
+}
+
+.contact-icon svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.contact-icon.behance svg {
+  fill: currentColor;
+  stroke: none;
+}
+
+.contact-icon.gmail {
+  background: #7f1838;
+}
+
+.contact-icon.whatsapp {
+  background: #1f8f68;
+}
+
+.contact-icon.behance {
+  background: #111820;
+}
+
+.with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
 }
 
 @media (max-width: 900px) {
@@ -698,9 +839,16 @@ h1 {
   }
 
   .service-grid,
-  .work-grid,
   .number-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .portfolio-shell {
+    padding-inline: 48px;
+  }
+
+  .work-carousel {
+    grid-auto-columns: calc((100% - 26px) / 2);
   }
 }
 
@@ -736,9 +884,21 @@ h1 {
   }
 
   .service-grid,
-  .work-grid,
   .number-grid {
     grid-template-columns: 1fr;
+  }
+
+  .portfolio-shell {
+    padding-inline: 0;
+  }
+
+  .work-carousel {
+    grid-auto-columns: 88%;
+    padding-inline: 2px;
+  }
+
+  .portfolio-nav {
+    display: none;
   }
 
   .hero-actions,
