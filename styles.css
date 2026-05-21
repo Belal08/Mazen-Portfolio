@@ -1108,32 +1108,66 @@ body.light-mode .service-grid article {
   gap: 20px;
 }
 
-.contact-list .contact-pill {
+/* تنسيق الحاوية الأساسية للأزرار الثلاثة */
+.contact-list {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  min-width: 176px;
-  min-height: 66px;
-  padding: 0 28px;
+  gap: 20px; /* المسافة بين الـ 3 زراير وبعضهم */
+  margin-top: 24px;
+}
+
+/* تنسيق الزرار نفسه */
+.contact-list .contact-pill {
+  display: inline-flex; /* تفعيل الفليكس بوكس عشان يظبط المحاذاة */
+  align-items: center; /* سنترة العناصر رأسياً بالظبط */
+  justify-content: center; /* سنترة العناصر أفقياً بالظبط */
+  gap: 12px; /* المسافة الثابتة بين الأيقونة والكلمة جوا الزرار */
+  min-width: 180px;
+  min-height: 60px;
+  padding: 0 24px;
   border: 0;
-  border-radius: 18px;
+  border-radius: 14px; /* زوايا دائرية ناعمة وشكلها مودرن */
   color: #fff;
-  font-size: 21px;
-  line-height: 1;
-  box-shadow: 0 18px 30px rgba(4, 12, 24, 0.24);
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 12px 24px rgba(4, 12, 24, 0.15);
   transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
+/* حركة الـ Hover عند تمرير الماوس */
 .contact-list .contact-pill:hover {
   transform: translateY(-3px);
-  color: #fff;
-  box-shadow: 0 24px 38px rgba(4, 12, 24, 0.3);
+  box-shadow: 0 18px 32px rgba(4, 12, 24, 0.25);
+  color: #fff !important;
 }
 
+/* تنسيق دائرية الأيقونة داخل الزرار */
 .contact-pill .contact-icon {
-  width: 30px;
-  height: 30px;
-  background: rgba(255, 255, 255, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15); /* خلفية خفيفة تبرز الأيقونة */
+  flex-shrink: 0; /* يمنع انضغاط الدائرة */
 }
 
+/* حجم الـ SVG داخل الدائرة */
+.contact-pill .contact-icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* تنظيف الاستايلات القديمة المسببة للمشكلة */
+.contact-icon.gmail, 
+.contact-icon.whatsapp, 
+.contact-icon.behance {
+  background: transparent !important; /* إلغاء الخلفيات القديمة للأيقونات المنفردة */
+}
 .contact-pill .contact-icon svg {
   width: 20px;
   height: 20px;
