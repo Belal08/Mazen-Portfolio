@@ -756,6 +756,7 @@ h1 {
   color: var(--blue);
 }
 
+/* 1. اترك هذا الكلاس كما هو مبني في كودك الأصلي */
 .contact-icon {
   flex: 0 0 auto;
   display: inline-grid;
@@ -763,8 +764,18 @@ h1 {
   width: 28px;
   height: 28px;
   border-radius: 999px;
-  color: var(--ink); /* 1. تم ربطه بالمتغير الديناميكي ليتحول لأسود في اللايت مود وأبيض في الدارك مود */
+  color: #fff; 
   vertical-align: middle;
+}
+
+/* 2. أضف هذا الجزء الجديد تماماً في نهاية ملف الـ CSS الخاص بك */
+.with-icon .contact-icon {
+  background: transparent !important; /* إزالة أي خلفية */
+  color: inherit !important;          /* السحر هنا: الأيقونة ستجبر على أخذ نفس لون الكلمة والخط تماماً */
+}
+
+.with-icon .contact-icon svg {
+  fill: currentColor !important;     /* تجعل محتوى الـ SVG يلون نفسه بلون النص */
 }
 
 /* 2. إضافة هذا السطر الصغير لضمان أن تظل أيقونات قسم الـ Contact السفلية بيضاء دائماً فوق خلفياتها الملونة */
