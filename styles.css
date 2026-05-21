@@ -127,7 +127,7 @@ nav a:hover::after {
 .section-kicker {
   margin: 0 0 14px;
   color: var(--blue);
-  font-size: 13px;
+  font-size: 20px;
   font-weight: 900;
   text-transform: uppercase;
 }
@@ -1097,7 +1097,7 @@ body.light-mode .service-grid article {
 .contact-card h2 {
   max-width: 780px;
   margin-inline: auto;
-  color: #f8fbff;
+  color: #111827;
   font-size: clamp(38px, 5vw, 64px);
 }
 
