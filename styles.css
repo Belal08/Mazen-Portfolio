@@ -315,7 +315,6 @@ h1 {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
 }
 
-/* التعديل هنا: إزالة الـ flex لضبط الاستقامة بشكل تام ومحاذاة مثالية للبيانات */
 .profile-list p {
   margin: 0 0 9px;
   color: var(--soft-ink);
@@ -756,7 +755,6 @@ h1 {
   color: var(--blue);
 }
 
-/* 1. اترك هذا الكلاس كما هو مبني في كودك الأصلي */
 .contact-icon {
   flex: 0 0 auto;
   display: inline-grid;
@@ -764,23 +762,8 @@ h1 {
   width: 28px;
   height: 28px;
   border-radius: 999px;
-  color: #fff; 
-  vertical-align: middle;
-}
-
-/* 2. أضف هذا الجزء الجديد تماماً في نهاية ملف الـ CSS الخاص بك */
-.with-icon .contact-icon {
-  background: transparent !important; /* إزالة أي خلفية */
-  color: inherit !important;          /* السحر هنا: الأيقونة ستجبر على أخذ نفس لون الكلمة والخط تماماً */
-}
-
-.with-icon .contact-icon svg {
-  fill: currentColor !important;     /* تجعل محتوى الـ SVG يلون نفسه بلون النص */
-}
-
-/* 2. إضافة هذا السطر الصغير لضمان أن تظل أيقونات قسم الـ Contact السفلية بيضاء دائماً فوق خلفياتها الملونة */
-.contact-list .contact-icon {
   color: #fff;
+  vertical-align: middle;
 }
 
 .contact-icon.behance svg {
@@ -846,26 +829,62 @@ h1 {
   }
 }
 
+/* ========================================================== */
+/* 📱 تحديث الميديا كويري لتطبيق الشريط الأفقي القابل للتمرير للموبايل */
+/* ========================================================== */
 @media (max-width: 620px) {
   .container {
     width: min(100% - 28px, 1120px);
   }
 
+  /* جعل الهيدر مرنًا وثابت الارتفاع لمنع التمدد */
   .navbar {
-    min-height: 108px;
+    min-height: 64px !important;
+    padding: 0 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
   }
 
   .logo {
-    font-size: 22px;
+    font-size: 20px !important;
+    flex-shrink: 0 !important;
   }
 
+  /* ترتيب الروابط أفقيًا بشكل كامل وتفعيل التمرير بسحب الأصبع (Scroll) */
   nav {
-    max-width: 72vw;
-    gap: 9px 12px;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 16px !important;
+    max-width: calc(100% - 100px) !important; /* يمنع الاصطدام تماماً بين اللوجو والزر */
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    padding: 8px 0 !important;
+    scrollbar-width: none !important; /* إخفاء شريط التمرير لفايرفوكس */
+  }
+
+  nav::-webkit-scrollbar {
+    display: none !important; /* إخفاء شريط التمرير لكروم وسفاري */
   }
 
   nav a {
-    font-size: 11px;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    flex-shrink: 0 !important; /* منع انضغاط أو تشوه نصوص الروابط */
+  }
+
+  .theme-toggle {
+    width: 38px !important;
+    height: 38px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* منع نص التأثير من الاختفاء أو الانقطاع في الهواتف */
+  .typed {
+    font-size: 20px !important;
+    min-height: auto !important;
   }
 
   .section {
@@ -898,6 +917,14 @@ h1 {
   .hero-actions,
   .about-actions {
     justify-content: center;
+  }
+
+  .contact-list .contact-pill {
+    width: 100%;
+    max-width: 260px;
+    min-height: 60px;
+    border-radius: 16px;
+    font-size: 17px;
   }
 }
 
@@ -1099,18 +1126,12 @@ body.light-mode .service-grid article {
   text-align: center;
 }
 
+/* حل مشكلة قراءة النص بلون أبيض تلقائيًا في الدارك مود */
 .contact-card h2 {
   max-width: 780px;
   margin-inline: auto;
-  color: var(--ink); /* تم ربطه بالمتغير الديناميكي ليصبح أبيض تلقائياً في الدارك مود */
+  color: var(--ink);
   font-size: clamp(38px, 5vw, 64px);
-}
-
-.contact-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
 }
 
 .contact-list {
@@ -1209,25 +1230,12 @@ body.light-mode .service-grid article {
   }
 }
 
-@media (max-width: 620px) {
-  .navbar {
-    gap: 12px;
-  }
+/* حل ربط أيقونة Behance بلون النص في الـ About */
+.with-icon .contact-icon {
+  background: transparent !important;
+  color: inherit !important;
+}
 
-  nav {
-    max-width: 58vw;
-  }
-
-  .theme-toggle {
-    width: 40px;
-    height: 40px;
-  }
-
-  .contact-list .contact-pill {
-    width: 100%;
-    max-width: 260px;
-    min-height: 60px;
-    border-radius: 16px;
-    font-size: 17px;
-  }
+.with-icon .contact-icon svg {
+  fill: currentColor !important;
 }
