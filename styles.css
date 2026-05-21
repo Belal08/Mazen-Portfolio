@@ -763,8 +763,13 @@ h1 {
   width: 28px;
   height: 28px;
   border-radius: 999px;
-  color: #fff;
+  color: var(--ink); /* 1. تم ربطه بالمتغير الديناميكي ليتحول لأسود في اللايت مود وأبيض في الدارك مود */
   vertical-align: middle;
+}
+
+/* 2. إضافة هذا السطر الصغير لضمان أن تظل أيقونات قسم الـ Contact السفلية بيضاء دائماً فوق خلفياتها الملونة */
+.contact-list .contact-icon {
+  color: #fff;
 }
 
 .contact-icon.behance svg {
