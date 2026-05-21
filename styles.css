@@ -56,13 +56,6 @@ a {
   backdrop-filter: blur(16px);
 }
 
-.logo {
-  color: #fff;
-  font-size: 28px;
-  font-weight: 800;
-  letter-spacing: 0;
-}
-
 nav {
   display: flex;
   gap: 24px;
